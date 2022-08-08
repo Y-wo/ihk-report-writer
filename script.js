@@ -2,11 +2,12 @@
 
 /*
 TODO:
-    - input links, output rechts
+    - Datum
     - gesamtes Ausspucken (unten - automatisch immer)
     - button und Funktion, Sätze zu ändern
     - Sätze verbessern
     - Datumsfunktion
+    - hover ?
 
  */
 
@@ -62,39 +63,64 @@ document.addEventListener("DOMContentLoaded", function () {
     let counter = 1
     for(let subject of subjects){
 
-        console.log(counter)
-        //div
-        let thisDiv = document.createElement("div")
-        thisDiv.className = "thisDiv col-10 d-flex flex-column align-items-center mb-3"
+        //divs
+        let bigDiv = document.createElement("div")
+        bigDiv.className = "thisDiv col-12 d-flex flex-column mb-3 p-1"
+        let bigDivUp = document.createElement("div")
+        bigDivUp.className = "col-12"
+        let divDown = document.createElement("div")
+        divDown.className = "col-12 d-flex "
+        let leftDiv = document.createElement("div")
+        leftDiv.className = "leftDiv col-4 d-flex "
+        let leftDivDown = document.createElement("div")
+        leftDivDown.className = "col-12 d-flex justify-content-between"
+        let rightDiv = document.createElement("div")
+        rightDiv.className = "rightDiv col-8 d-flex flex-column align-items-start "
+
+        //button
+        let changeButton = document.createElement("button")
+        changeButton.append("Wechseln")
+        changeButton.className="col-4 btn bg-success mx-3 "
 
         //heading
-        let heading = document.createElement("h5")
+        let heading = document.createElement("h6")
         heading.append(subject.title + " - " + subject.teacher)
         //topic input
         let topicInput = document.createElement("input")
         topicInput.placeholder = 'Fach' + counter
-        topicInput.className = 'topic' + counter
+        topicInput.className = 'topic' + counter + ' col-7 rounded'
 
         //output
         let output = document.createElement("div")
-        output.className = 'output' + counter + ' align-self-start'
+        output.className = 'output' + counter + ' h-100 d-flex align-items-center'
 
-        thisDiv.append(heading)
-        thisDiv.append(topicInput)
-        thisDiv.append(output)
-        $(".mainDivJs").append(thisDiv)
+
+        //appending
+        bigDivUp.append(heading)
+        divDown.append(leftDiv)
+        divDown.append(rightDiv)
+        leftDiv.append(topicInput)
+        // leftDiv.append(changeButton)
+        rightDiv.append(output)
+        bigDiv.append(bigDivUp)
+        bigDiv.append(divDown)
+        $(".mainDivJs").append(bigDiv)
 
         //events
         topicInput.addEventListener("keyup", function(event){
             if(event.key === "Enter"){
                 subject.topic = topicInput.value
                 console.log(subject.topic)
-                output.append(writeSentence(subject.title, subject.teacher, subject.topic))
+                output.innerHTML = writeSentence(subject.title, subject.teacher, subject.topic)
+                leftDiv.append(changeButton)
             }
         })
 
-        counter++
+        changeButton.addEventListener("click", function(){
+            output.innerHTML = writeSentence(subject.title, subject.teacher, subject.topic)
+        })
 
+        counter++
     }
 
 
@@ -108,8 +134,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function writeSentence(subject, teacher, topic){
     let sentenceArray = [
-        'In Fach ' + subject + ' bei ' + ' haben wir uns mit dem Thema ' + topic + ' beschäftigt.',
-        teacher + ' behandelte in Fach ' + subject + ' besonders das Thema ' + topic,
+        'In Fach ' + subject + ' bei ' + teacher + ' haben wir uns mit dem Thema ' + topic + ' beschäftigt.',
+        teacher + ' behandelte in ' + subject + ' besonders das Thema ' + topic + '.',
+        'In ' + subject + ' bei ' + teacher + ' stand diese Woche ' + topic + ' im Zentrum.',
+        'In ' + subject + ' bei ' + teacher + ' stand diese Woche ' + topic + ' im Fokus.',
+        'Im Zentrum von ' + subject + ' bei ' + teacher + ' stand diese Woche die Thematik ' + topic + ' im Zentrum.',
+        'Im Zentrum von ' + subject + ' bei ' + teacher + ' stand diese Woche die Thematik ' + topic + ' im Fokus.',
+        teacher + ' behandelte diese Woche in ' + subject + ' das Themengebiet ' + topic + '.',
+        'Bei ' + teacher + ' lernten wir in ' + subject + ' das Thema ' + topic + ' kennen.',
+        'Bei ' + teacher + ' in ' + subject + ' setzten wir uns mit ' + topic + ' auseinander.',
+        'Der Gegenstand "' + topic + '" wurde bei ' + teacher + ' in ' +  subject + ' behandelt.',
+        'Bei ' + teacher + ' in ' + subject + ' wurde der Gegenstand "' + subject + ' behandelt.'
     ]
 
     let randomNumber = Math.floor(Math.random() * sentenceArray.length)
