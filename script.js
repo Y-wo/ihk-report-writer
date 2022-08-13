@@ -2,7 +2,7 @@
 
 /*
 TODO:
-    - Datum
+    - general Infos optisch anpassen (asurichten)
     - gesamtes Ausspucken (unten - automatisch immer)
     - button und Funktion, Sätze zu ändern
     - Sätze verbessern
@@ -56,16 +56,52 @@ let subjects = [
 ]
 
 
-
-
 document.addEventListener("DOMContentLoaded", function () {
 
+    let reportNumber = document.querySelector(".reportNumberJs")
+    let reportSubject = document.querySelector(".reportSubjectJs")
+    let beginDateInput = document.querySelector(".beginDateJs")
+    let endDateInput = document.querySelector(".endDateJs")
+
+
+    beginDateInput.addEventListener("keyup", function (e) {
+        if (e.key === "Enter") {
+            let beginDate = new Date(beginDateInput.value)
+            let beginDateCopy = new Date(beginDateInput.value)
+            let endDate = new Date(beginDateCopy.setDate(beginDateCopy.getDate() + 7))
+            let endDay = endDate.getDate()
+            if(endDay < 10) endDay = '0' + endDay
+            let endMonth = endDate.getMonth() + 1
+            if(endMonth < 10) endMonth = '0' + endMonth
+            let endYear = endDate.getFullYear()
+            endDateInput.value = endDay + '.' + endMonth + '.' + endYear
+        }
+    })
+
+    reportNumber.addEventListener("keyup", function(e){
+        if (e.key === "Enter") {
+            let reportNumberValue = reportNumber.value
+            console.log(reportNumberValue)
+        }
+    })
+
+    reportSubject.addEventListener("keyup", function(e){
+        if (e.key === "Enter") {
+            let reportSubjectValue = reportSubject.value
+            console.log(reportSubjectValue)
+        }
+    })
+
+
+
+
+
+    //--- subject inputs
     let counter = 1
     for(let subject of subjects){
-
         //divs
         let bigDiv = document.createElement("div")
-        bigDiv.className = "thisDiv col-12 d-flex flex-column mb-3 p-1"
+        bigDiv.className = "thisDiv col-12 d-flex flex-column mb-3"
         let bigDivUp = document.createElement("div")
         bigDivUp.className = "col-12"
         let divDown = document.createElement("div")
