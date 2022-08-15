@@ -2,8 +2,9 @@
 
 /*
 TODO:
-    - general Infos optisch anpassen (asurichten)
     - gesamtes Ausspucken (unten - automatisch immer)
+        * applyButton event
+    . favIcon für change button
     - button und Funktion, Sätze zu ändern
     - Sätze verbessern
     - Datumsfunktion
@@ -64,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let endDateInput = document.querySelector(".endDateJs")
 
 
+
     beginDateInput.addEventListener("keyup", function (e) {
         if (e.key === "Enter") {
             let beginDate = new Date(beginDateInput.value)
@@ -93,30 +95,28 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
 
-
-
-
     //--- subject inputs
     let counter = 1
     for(let subject of subjects){
         //divs
-        let bigDiv = document.createElement("div")
-        bigDiv.className = "thisDiv col-12 d-flex flex-column mb-3"
-        let bigDivUp = document.createElement("div")
-        bigDivUp.className = "col-12"
-        let divDown = document.createElement("div")
-        divDown.className = "col-12 d-flex "
+        let completeDiv = document.createElement("div")
+        completeDiv.className = "thisDiv col-12 d-flex flex-column mb-3"
+        let divTop = document.createElement("div")
+        divTop.className = "col-12 "
+        let divBottom = document.createElement("div")
+        divBottom.className = "col-12 d-flex"
         let leftDiv = document.createElement("div")
-        leftDiv.className = "leftDiv col-4 d-flex "
-        let leftDivDown = document.createElement("div")
-        leftDivDown.className = "col-12 d-flex justify-content-between"
+        leftDiv.className = "leftDiv col-3 d-flex"
+
+        let midDiv = document.createElement("div")
+        midDiv.className = "midDiv col-1 d-flex align-items-center justify-content-center"
         let rightDiv = document.createElement("div")
         rightDiv.className = "rightDiv col-8 d-flex flex-column align-items-start "
 
         //button
         let changeButton = document.createElement("button")
-        changeButton.append("Wechseln")
-        changeButton.className="col-4 btn bg-success mx-3 "
+        changeButton.append("x")
+        changeButton.className= "btn bg-success py-0"
 
         //heading
         let heading = document.createElement("h6")
@@ -124,23 +124,23 @@ document.addEventListener("DOMContentLoaded", function () {
         //topic input
         let topicInput = document.createElement("input")
         topicInput.placeholder = 'Fach' + counter
-        topicInput.className = 'topic' + counter + ' col-7 rounded'
+        topicInput.className = 'topic' + counter + ' rounded'
 
         //output
         let output = document.createElement("div")
         output.className = 'output' + counter + ' h-100 d-flex align-items-center'
 
-
         //appending
-        bigDivUp.append(heading)
-        divDown.append(leftDiv)
-        divDown.append(rightDiv)
+        divTop.append(heading)
+        divBottom.append(leftDiv)
+        divBottom.append(midDiv)
+        divBottom.append(rightDiv)
         leftDiv.append(topicInput)
-        // leftDiv.append(changeButton)
         rightDiv.append(output)
-        bigDiv.append(bigDivUp)
-        bigDiv.append(divDown)
-        $(".mainDivJs").append(bigDiv)
+
+        completeDiv.append(divTop)
+        completeDiv.append(divBottom)
+        $(".roundingSubjectDiv").append(completeDiv)
 
         //events
         topicInput.addEventListener("keyup", function(event){
@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 subject.topic = topicInput.value
                 console.log(subject.topic)
                 output.innerHTML = writeSentence(subject.title, subject.teacher, subject.topic)
-                leftDiv.append(changeButton)
+                midDiv.append(changeButton)
             }
         })
 
@@ -158,6 +158,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         counter++
     }
+
+    //apply Event
 
 
 

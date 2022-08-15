@@ -7,33 +7,42 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.css">
+    <title>IHK REPORTER</title>
+
 </head>
 
-<body class="w-100 d-flex justify-content-center">
+<body class="w-100 d-flex justify-content-center" >
 <div class="mainDivJs col-xl-8 col-lg-10 col-md-10 col-12 border bg-info d-flex flex-column align-items-center min-vh-100 h-100 p-1">
-    <h1 class=" text-decoration-underline">IHK DESTROYER </h1>
-    <div class="generalInfoDiv col-12 mb-5">
-
-        <label>
-            Bericht-Nr.: <br>
-            <input type="number" class="reportNumberJs rounded p-0">
-        </label>
-
-        <label>
-            Thema: <br>
-            <input type="text" class="reportSubjectJs rounded p-0">
-        </label>
-
-        <label>
-            Zeitraum: <br>
-            <input type="date" class="beginDateJs rounded p-0" >
-            bis
-            <input type="text" class="endDateJs rounded p-0" placeholder="">
-        </label>
+    <h1 class=" text-decoration-underline">IHK REPORTER</h1>
+    <div class="generalInfoDiv col-12 mb-5 d-flex flex-wrap">
+        <div class="col-12 col-sm-6 col-lg-3 m-0 p-0 ">
+            <h6>Bericht-Nr.: </h6>
+            <input type="number" class="reportNumberJs rounded p-0 ">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3 m-0 p-0">
+            <h6>Thema:</h6>
+            <input type="text" class="reportSubjectJs rounded p-0 ">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3 m-0 p-0">
+            <h6>Zeitraum: </h6>
+            <input type="date" class="beginDateJs rounded p-0 " >
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3 m-0 p-0 ">
+            <h6>bis:</h6>
+            <input type="text" class="endDateJs rounded p-0 disable-color " placeholder="" readonly >
+        </div>
+    </div>
+    <div class="roundingSubjectDiv col-12 d-flex flex-column align-items-center">
 
 
     </div>
+
+
+    <button class="applyButton btn fw-bold bg-danger">
+        Anwenden
+    </button>
 
 
 
