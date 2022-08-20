@@ -4,6 +4,9 @@
 TODO:
     - gesamtes Ausspucken (unten - automatisch immer)
         * Datum noch hinzufügen
+    - date Input auf click (?) umstellen?
+        * endDate soll direkt erscheinen
+    - entfernen-Button
     . favIcon für change button
     - button und Funktion, Sätze zu ändern
     - Sätze verbessern
@@ -90,12 +93,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (e.key === "Enter") {
             let beginDate = new Date(beginDateInput.value)
             let beginDateCopy = new Date(beginDateInput.value)
-            let endDate = new Date(beginDateCopy.setDate(beginDateCopy.getDate() + 7))
+            let endDate = new Date(beginDateCopy.setDate(beginDateCopy.getDate() + 6))
             let endDay = endDate.getDate()
             if(endDay < 10) endDay = '0' + endDay
-            let endMonth = endDate.getMonth() + 1
+            var endMonth = endDate.getMonth() + 1
             if(endMonth < 10) endMonth = '0' + endMonth
-            let endYear = endDate.getFullYear()
+            var endYear = endDate.getFullYear()
             endDateInput.value = endDay + '.' + endMonth + '.' + endYear
         }
     })
@@ -192,7 +195,17 @@ document.addEventListener("DOMContentLoaded", function () {
             completeOutput.append(reportSubjectParagraph)
         }
 
-
+        if(beginDateInput.value){
+            let dateParagraph = document.createElement('p')
+            let beginDate = new Date(beginDateInput.value)
+            let beginDay = beginDate.getDate()
+            if(beginDay < 10) beginDay = '0' + beginDay
+            var beginMonth = beginDate.getMonth() + 1
+            if(beginMonth < 10) beginMonth = '0' + beginMonth
+            var beginYear = beginDate.getFullYear()
+            dateParagraph.append(beginDay + "." + beginMonth + "." + beginYear + " bis " + endDateInput.value)
+            completeOutput.append(dateParagraph)
+        }
 
         for(let subject of subjects){
             if(subject.sentenceIndex !== null){
