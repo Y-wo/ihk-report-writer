@@ -2,16 +2,10 @@
 
 /*
 TODO:
-    - gesamtes Ausspucken (unten - automatisch immer)
-        * Datum noch hinzufügen
-    - date Input auf click (?) umstellen?
-        * endDate soll direkt erscheinen
-    - entfernen-Button
-    . favIcon für change button
-    - button und Funktion, Sätze zu ändern
-    - Sätze verbessern
-    - Datumsfunktion
+    - favIcon für change button
     - hover ?
+    - Sätze verbessern
+    - schönerer Hintergrund
 
  */
 
@@ -88,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let endDateInput = document.querySelector(".endDateJs")
     let applyButton = document.querySelector(".applyButton")
     let completeOutput = document.querySelector(".completeOutput")
+    let hr = document.querySelector(".hrJs")
 
     beginDateInput.addEventListener("keyup", function (e) {
         if (e.key === "Enter") {
@@ -95,9 +90,9 @@ document.addEventListener("DOMContentLoaded", function () {
             let beginDateCopy = new Date(beginDateInput.value)
             let endDate = new Date(beginDateCopy.setDate(beginDateCopy.getDate() + 6))
             let endDay = endDate.getDate()
-            if(endDay < 10) endDay = '0' + endDay
+            if (endDay < 10) endDay = '0' + endDay
             var endMonth = endDate.getMonth() + 1
-            if(endMonth < 10) endMonth = '0' + endMonth
+            if (endMonth < 10) endMonth = '0' + endMonth
             var endYear = endDate.getFullYear()
             endDateInput.value = endDay + '.' + endMonth + '.' + endYear
         }
@@ -134,10 +129,13 @@ document.addEventListener("DOMContentLoaded", function () {
         let rightDiv = document.createElement("div")
         rightDiv.className = "rightDiv col-8 d-flex flex-column align-items-start "
 
-        //button
+        //buttons
         let changeButton = document.createElement("button")
         changeButton.append("Wechseln")
-        changeButton.className= "btn bg-success py-0"
+        changeButton.classList= "btn bg-success py-0"
+        let removeButton = document.createElement("button")
+        removeButton.append("Löschen")
+        removeButton.classList= "btn bg-danger py-0"
 
         //heading
         let heading = document.createElement("h6")
@@ -163,23 +161,38 @@ document.addEventListener("DOMContentLoaded", function () {
         completeDiv.append(divBottom)
         $(".roundingSubjectDiv").append(completeDiv)
 
-        //events
+        //--- events
+
+        //set output
         topicInput.addEventListener("keyup", function(event){
             if(event.key === "Enter"){
                 subject.topic = topicInput.value
                 setSubjectOutput(subject, output)
-                midDiv.append(changeButton)
+                midDiv.append(changeButton, removeButton)
+
             }
         })
 
+        //change output
         changeButton.addEventListener("click", function(){
             setSubjectOutput(subject, output)
         })
+
+        //remove output
+        removeButton.addEventListener("click", function(){
+            subject.sentenceIndex = null
+            output.innerHTML = ''
+            midDiv.removeChild(changeButton)
+            midDiv.removeChild(removeButton)
+        })
+
         counter++
     }
 
     //apply Event
     applyButton.addEventListener("click", function(){
+        hr.classList.remove("invisible")
+        hr.classList.add("visible")
         completeOutput.innerHTML = ''
         if(reportNumber.value) {
             console.log(reportNumber.value)
