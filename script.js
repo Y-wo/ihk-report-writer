@@ -2,10 +2,13 @@
 
 /*
 TODO:
-    - favIcon für change button
-    - hover ?
+    - Thessa fragen:
+        * Hintergrund ok?
+        * Überschrift gut?
+            -> Downloaden
+    - verschwimmender Rand
+    - import subjects
     - Sätze verbessern
-    - schönerer Hintergrund
 
  */
 
@@ -122,41 +125,44 @@ document.addEventListener("DOMContentLoaded", function () {
         let divBottom = document.createElement("div")
         divBottom.className = "col-12 d-flex"
         let leftDiv = document.createElement("div")
-        leftDiv.className = "leftDiv col-3 d-flex"
+        leftDiv.className = "leftDiv col-4 d-flex  "
+        let buttonDiv = document.createElement("div")
+        buttonDiv.classList = "col-5 d-flex justify-content-around"
 
-        let midDiv = document.createElement("div")
-        midDiv.className = "midDiv col-1 d-flex align-items-center justify-content-center"
         let rightDiv = document.createElement("div")
         rightDiv.className = "rightDiv col-8 d-flex flex-column align-items-start "
 
         //buttons
         let changeButton = document.createElement("button")
-        changeButton.append("Wechseln")
-        changeButton.classList= "btn bg-success py-0"
+        let iChangeButton = document.createElement('i')
+        iChangeButton.classList = "fas fa-sync-alt fa-1x"
+        changeButton.append(iChangeButton)
+        changeButton.classList= "changeButton btn py-0 mH2r"
         let removeButton = document.createElement("button")
-        removeButton.append("Löschen")
-        removeButton.classList= "btn bg-danger py-0"
+        let iRemoveButton = document.createElement('i')
+        iRemoveButton.classList = "fas fa-trash-alt"
+        removeButton.append(iRemoveButton)
+        removeButton.classList= "btn removeButton py-0 mH2r"
 
         //heading
         let heading = document.createElement("h6")
         heading.append(subject.title + " - " + subject.teacher)
+
         //topic input
         let topicInput = document.createElement("input")
-        topicInput.placeholder = 'Fach' + counter
+        topicInput.placeholder = 'Thema'
         topicInput.className = 'topic' + counter + ' rounded'
 
         //output
         let output = document.createElement("div")
-        output.className = 'output' + counter + ' h-100 d-flex align-items-center'
+        output.classList = 'output' + counter + ' h-100 d-flex align-items-center col1'
 
         //appending
         divTop.append(heading)
         divBottom.append(leftDiv)
-        divBottom.append(midDiv)
         divBottom.append(rightDiv)
-        leftDiv.append(topicInput)
+        leftDiv.append(topicInput, buttonDiv)
         rightDiv.append(output)
-
         completeDiv.append(divTop)
         completeDiv.append(divBottom)
         $(".roundingSubjectDiv").append(completeDiv)
@@ -168,8 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if(event.key === "Enter"){
                 subject.topic = topicInput.value
                 setSubjectOutput(subject, output)
-                midDiv.append(changeButton, removeButton)
-
+                buttonDiv.append(changeButton, removeButton)
             }
         })
 
@@ -182,8 +187,9 @@ document.addEventListener("DOMContentLoaded", function () {
         removeButton.addEventListener("click", function(){
             subject.sentenceIndex = null
             output.innerHTML = ''
-            midDiv.removeChild(changeButton)
-            midDiv.removeChild(removeButton)
+            topicInput.value = ''
+            buttonDiv.removeChild(changeButton)
+            buttonDiv.removeChild(removeButton)
         })
 
         counter++
@@ -210,6 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if(beginDateInput.value){
             let dateParagraph = document.createElement('p')
+            dateParagraph.style = "margin-bottom: 2rem !important;"
             let beginDate = new Date(beginDateInput.value)
             let beginDay = beginDate.getDate()
             if(beginDay < 10) beginDay = '0' + beginDay
@@ -230,9 +237,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
 
-
-
-
 })
 
 
@@ -243,6 +247,7 @@ function setSubjectOutput(subject, output){
     subject.sentenceIndex = Math.floor(Math.random() * sentenceEntity.getSentenceArrayLength())
     output.innerHTML = sentenceEntity.getSentence(subject.sentenceIndex)
 }
+
 
 function SentenceEntity(subject) {
     let title = subject.title
