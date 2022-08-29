@@ -7,8 +7,7 @@ input{
 
 h1{
  font-family: 'Rubik Iso', cursive;
- /*font-family: 'Space Mono', monospace;*/
- /*font-family: 'Special Elite', cursive;*/
+ color: #6A1D2F !important;
 }
 
 .mH2r{
@@ -18,11 +17,6 @@ h1{
 .disable-color{
  color: rgba(75, 74, 74, 0.85) !important;
 }
-
-/*button:hover{*/
-/* color: #f5f4f4 !important;*/
-/* transition: color 0.5s;*/
-/*}*/
 
 .changeButton{
  background-color: rgba(0, 128, 0, 0.40) !important;
@@ -45,11 +39,11 @@ h1{
 }
 
 .applyButton{
- background-color: rgba(0, 0, 255, 0.30) !important;
+ background-color: rgba(53, 76, 60, 0.5) !important;
 }
 
 .applyButton:hover{
- background-color: rgba(0, 0, 255, 0.70) !important;
+ background-color: #354C3C!important;
  color: #f5f4f4 !important;
  transition: all 0.5s;
 }
@@ -60,13 +54,16 @@ h1{
 }
 
 /*background-colors*/
-
 .bgCol1{
- background-color: #e7e4e4 !important;
+ background-color: rgba(155, 70, 31, 0.91) !important;
 }
 
 .bgCol2{
- /*background-color: #a9a7a7 !important;*/
- background-color: rgba(169, 167, 167, 0.60) !important;
+ background-color: #DEA450 !important;
+}
+
+/*shadow*/
+.mainDivShadow{
+ box-shadow: #6A1D2F 2px 0 10px 4px;
 }
 

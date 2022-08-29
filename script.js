@@ -1,84 +1,58 @@
 'use strict'
 
-/*
-TODO:
-    - Thessa fragen:
-        * Hintergrund ok?
-        * Überschrift gut?
-            -> Downloaden
-    - verschwimmender Rand
-    - import subjects
-    - Sätze verbessern
 
- */
+//TODO:
+//  - Sätze verbessern
+//  - weißes Blatt als Hintergrund?
+//  - bei GitHub hochladen
 
 
+//--- INFO: Change your subjects and teachers here.
 let subjects = [
     {
         title : 'WPF',
         teacher : 'Herr Beicht',
-        topic: null,
-        sentenceIndex: null,
     },
     {
         title : 'Deutsch',
         teacher : 'Frau Caglar',
-        topic: null,
-        sentenceIndex: null,
     },
     {
         title : 'Englisch',
         teacher : 'Frau Caglar',
-        topic: null,
-        sentenceIndex: null,
     },
     {
         title : 'Lernfeld 1',
         teacher : 'Frau Führich-Albert',
-        topic: null,
-        sentenceIndex: null,
     },
     {
         title : 'Lernfeld 2',
         teacher : 'Herr Schäfer',
-        topic: null,
-        sentenceIndex: null,
     },
     {
         title : 'Lernfeld 2',
         teacher : 'Frau Gau',
-        topic: null,
-        sentenceIndex: null,
     },
     {
         title : 'Lernfeld 3',
         teacher : 'Herr Heyeckhaus',
-        topic: null,
-        sentenceIndex: null,
     },
     {
         title : 'Lernfeld 4',
         teacher : 'Herr Decker',
-        topic: null,
-        sentenceIndex: null,
     },
     {
         title : 'Lernfeld 5',
         teacher : 'Herr Donnarumma',
-        topic: null,
-        sentenceIndex: null,
     },
     {
         title : 'SoWi',
         teacher : 'Frau Ruf',
-        topic: null,
-        sentenceIndex: null,
     }
 ]
 
 
 document.addEventListener("DOMContentLoaded", function () {
-
     let reportNumber = document.querySelector(".reportNumberJs")
     let reportSubject = document.querySelector(".reportSubjectJs")
     let beginDateInput = document.querySelector(".beginDateJs")
@@ -117,6 +91,9 @@ document.addEventListener("DOMContentLoaded", function () {
     //--- subject inputs
     let counter = 1
     for(let subject of subjects){
+        subject.topic = null
+        subject.sentenceIndex = null
+
         //divs
         let completeDiv = document.createElement("div")
         completeDiv.className = "thisDiv col-12 d-flex flex-column mb-3"
