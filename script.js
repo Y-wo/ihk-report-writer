@@ -1,12 +1,11 @@
 'use strict'
 
+//--- FOR YOUR INFORMATION:
+// Customize your subjects and teachers
+// here
+//  |
+//  V
 
-//TODO:
-//  - Sätze verbessern
-//  - bei GitHub hochladen
-
-
-//--- INFO: Change your subjects and teachers here.
 let subjects = [
     {
         title : 'WPF',
@@ -216,8 +215,6 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
 })
-
-
 
 
 function setSubjectOutput(subject, output){
