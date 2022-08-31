@@ -14,6 +14,10 @@ h1{
  max-height: 2rem !important;
 }
 
+.paperHeight{
+ min-height: 750px;
+}
+
 .disable-color{
  color: rgba(75, 74, 74, 0.85) !important;
 }
@@ -60,6 +64,10 @@ h1{
 
 .bgCol2{
  background-color: #DEA450 !important;
+}
+
+.bgCol3{
+ background-color: rgba(255, 255, 255, 0.85) !important;
 }
 
 /*shadow*/

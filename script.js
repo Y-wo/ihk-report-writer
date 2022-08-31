@@ -3,7 +3,6 @@
 
 //TODO:
 //  - Sätze verbessern
-//  - weißes Blatt als Hintergrund?
 //  - bei GitHub hochladen
 
 
@@ -147,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //--- events
 
         //set output
-        topicInput.addEventListener("keyup", function(event){
+        topicInput.addEventListener("keyup", async function(event){
             if(event.key === "Enter"){
                 subject.topic = topicInput.value
                 setSubjectOutput(subject, output)
@@ -176,6 +175,8 @@ document.addEventListener("DOMContentLoaded", function () {
     applyButton.addEventListener("click", function(){
         hr.classList.remove("invisible")
         hr.classList.add("visible")
+        completeOutput.classList.remove("d-none")
+        completeOutput.classList.add("d-flex")
         completeOutput.innerHTML = ''
         if(reportNumber.value) {
             console.log(reportNumber.value)
@@ -232,17 +233,25 @@ function SentenceEntity(subject) {
     let topic = subject.topic
     let sentenceIndex = subject.sentenceIndex
     this.sentenceArray = [
-        'In Fach ' + title + ' bei ' + teacher + ' haben wir uns mit dem Thema ' + topic + ' beschäftigt.',
-        teacher + ' behandelte in ' + title + ' besonders das Thema ' + topic + '.',
-        'In ' + title + ' bei ' + teacher + ' stand diese Woche ' + topic + ' im Zentrum.',
-        'In ' + title + ' bei ' + teacher + ' stand diese Woche ' + topic + ' im Fokus.',
-        'Im Zentrum von ' + title + ' bei ' + teacher + ' stand diese Woche die Thematik ' + topic + ' im Zentrum.',
-        'Im Zentrum von ' + title + ' bei ' + teacher + ' stand diese Woche die Thematik ' + topic + ' im Fokus.',
-        teacher + ' behandelte diese Woche in ' + title + ' das Themengebiet ' + topic + '.',
-        'Bei ' + teacher + ' lernten wir in ' + title + ' das Thema ' + topic + ' kennen.',
-        'Bei ' + teacher + ' in ' + title + ' setzten wir uns mit ' + topic + ' auseinander.',
+        'In ' + title + ' bei ' + teacher + ' haben wir uns mit dem Thema "' + topic + '" beschäftigt.',
+        teacher + ' behandelte in ' + title + ' besonders das Thema "' + topic + '".',
+        'In ' + title + ' bei ' + teacher + ' stand diese Woche das Thema "' + topic + '" im Zentrum.',
+        'In ' + title + ' bei ' + teacher + ' stand diese Woche das Thema "' + topic + '" im Fokus.',
+        'Im Zentrum von ' + title + ' bei ' + teacher + ' stand diese Woche die Thematik "' + topic + '" "im Zentrum.',
+        'Im Zentrum von ' + title + ' bei ' + teacher + ' stand diese Woche die Thematik "' + topic + '" im Fokus.',
+        teacher + ' behandelte diese Woche in ' + title + ' das Themengebiet "' + topic + '".',
+        'Bei ' + teacher + ' lernten wir in ' + title + ' das Thema "' + topic + '" kennen.',
+        'Bei ' + teacher + ' in ' + title + ' setzten wir uns mit "' + topic + '" auseinander.',
         'Der Gegenstand "' + topic + '" wurde bei ' + teacher + ' in ' +  title + ' behandelt.',
-        'Bei ' + teacher + ' in ' + title + ' wurde der Gegenstand "' + topic + ' behandelt.'
+        'Bei ' + teacher + ' in ' + title + ' wurde der Gegenstand "' + topic + '" behandelt.',
+        'In ' + title + ' bei ' + teacher + ' lernten wir das Thema "' + topic + '" kennen.',
+        '"' + topic + '" wurde bei ' + teacher + ' in ' + title + ' behandelt.',
+        'Diese Woche wurde bei ' + teacher + ' in ' + title + ' das Thema "' + topic + '" behandelt.',
+        'In ' + title  +' bei ' + teacher + ' tauchten wir in die Thematik "' + topic + '" ein.',
+        'Der besondere Schwerpunkt im Fach ' + title + ' bei ' + teacher + ' lag im Themengebiet "'+ topic + '".',
+        'Schwerpunktmäßig wurde bei ' + teacher + ' in ' + title + ' das Thema "' + topic + '" behandelt.',
+        'Auf der Tagesordnung des Fachs ' + title + ' bei ' + teacher + ' stand in dieser Woche das Thema "' + topic + '".',
+        'Um unser Wissen bezüglich des Themas "' + topic + '" zu vertiefen, beschäftigten wir uns im Fach ' + title + ' bei ' + teacher + ' damit.',
     ]
 
     this.getSentenceArray = function(){
